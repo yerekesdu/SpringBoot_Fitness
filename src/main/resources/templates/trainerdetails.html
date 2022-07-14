@@ -1,0 +1,54 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+
+        <div class="col-6 offset-3">
+            <div>
+                <div class="form-group">
+                    <img th:src="@{'/viewtrphoto/'+ ${trainer.trainerPic}}" style="width: 50%">
+                </div><br>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label>
+                        <b>Name:</b>
+                    </label>
+                    <label th:text="${trainer.name}+' '+${trainer.surname}"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Gym:</b>
+                    </label>
+                    <label th:text="${trainer.jym.name}"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Experience:</b>
+                    </label>
+                    <label th:text="${trainer.experience}+' years'"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Info:</b>
+                    </label>
+                    <label th:text="${trainer.info}"></label>
+                </div>
+            </div>
+                <br>
+                <div class="form-group" sec:authorize="hasAnyRole('ROLE_BUSINESSADMIN','ROLE_MODERATOR')">
+                    <a class="btn btn-success" th:href="@{'/trainerdetailsedit/' + ${trainer.id}}">EDIT TRAINER</a>
+                </div>
+                <br>
+                <div>
+                    <a class="btn btn-secondary" th:href="@{'/trainers'}">BACK TO TRAINERS</a>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+</html>

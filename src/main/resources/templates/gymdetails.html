@@ -1,0 +1,54 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org"
+      xmlns:sec = "http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+
+        <div class="col-6 offset-3">
+            <div>
+                <div class="form-group">
+                    <img th:src="@{'/viewphoto/'+ ${jym.getGymPic()}}" style="width: 50%">
+                </div><br>
+            </div>
+            <div>
+                <div class="form-group">
+                    <label>
+                        <b>Name:</b>
+                    </label>
+                    <label th:text="${jym.name}"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Address:</b>
+                    </label>
+                    <label th:text="${jym.address}"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Contact Numbers:</b>
+                    </label>
+                    <label th:text="${jym.contact_number}"></label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <b>Description:</b>
+                    </label>
+                    <label th:text="${jym.description}"></label>
+                </div>
+            </div>
+                <br>
+                <div class="form-group" sec:authorize="hasAnyRole('ROLE_BUSINESSADMIN','ROLE_MODERATOR')">
+                    <a class="btn btn-success" th:href="@{'/gymdetailsedit/' + ${jym.id}}">EDIT GYM</a>
+                </div>
+                <br>
+                <div>
+                    <a class="btn btn-secondary" th:href="@{'/gyms'}">BACK TO GYMS</a>
+                </div>
+        </div>
+    </div>
+
+</div>
+
+</html>

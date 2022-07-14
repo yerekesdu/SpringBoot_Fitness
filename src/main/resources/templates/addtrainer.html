@@ -1,0 +1,83 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{'/addtrainer'}" method="post">
+                <div class="form-group">
+                    <label>
+                        Name:
+                    </label>
+                    <input type="text" class="form-control" name="name">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Surname:
+                    </label>
+                    <input type="text" class="form-control" name="surname">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Experience:
+                    </label>
+                    <input type="number" class="form-control" name="experience">
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Gym:
+                    </label>
+                    <select class="form-control" name="jym_id">
+                        <option th:each="jym: ${jyms}"
+                                th:text="${jym.name}"
+                                th:value="${jym.id}"></option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        Info:
+                    </label>
+                    <textarea class="form-control" name="achievements"></textarea>
+                </div><br>
+                <div class="form-group">
+                    <button class="btn btn-success">ADD TRAINER</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>SURNAME</td>
+                        <td>EXPERIENCE</td>
+                        <td>GYM</td>
+                        <td>INFO</td>
+                        <td>DETAILS</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="trainer: ${trainers}">
+                        <td th:text="${trainer.id}"></td>
+                        <td th:text="${trainer.name}"></td>
+                        <td th:text="${trainer.surname}"></td>
+                        <td th:text="${trainer.experience}"></td>
+                        <td th:text="${trainer.jym.name}"></td>
+                        <td th:text="${trainer.info}"></td>
+                        <td><a th:href="@{'/trainerdetails/' + ${trainer.id}}" class="btn btn-primary">DETAILS</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</html>

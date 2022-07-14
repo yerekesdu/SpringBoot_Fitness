@@ -1,0 +1,27 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+
+    <div class="row mt-5">
+        <div class="col-6 offset-3" >
+            <form th:action="@{'/auth'}" method="post">
+                <div class="form-group">
+                    <label>EMAIL</label>
+                    <input type="email" name = "email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>PASSWORD</label>
+                    <input type="password" name = "password" class="form-control" required>
+                </div><br>
+                <div class="form-group">
+                    <button class="btn btn-success float-right">LOGIN</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+</html>

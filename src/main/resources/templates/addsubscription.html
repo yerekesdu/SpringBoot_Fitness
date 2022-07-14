@@ -1,0 +1,46 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{'/addsubscription'}" method="post">
+                <div class="form-group">
+                    <label>
+                        Name:
+                    </label>
+                    <input type="text" class="form-control" name="subscription_name">
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-success">ADD SUBSCRIPTION</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>DETAILS</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="subscription: ${subscriptions}">
+                        <td th:text="${subscription.id}"></td>
+                        <td th:text="${subscription.name}"></td>
+                        <td><a th:href="@{'/subscriptiondetails/' + ${subscription.id}}" class="btn btn-primary">DETAILS</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</html>

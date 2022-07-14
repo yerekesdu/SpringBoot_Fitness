@@ -1,0 +1,83 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{'/editgym'}" method="post" enctype="multipart/form-data">
+                <input type="hidden" th:value="${jym.id}" name="id">
+                <div class="form-group">
+                    <label>
+                        Name:
+                    </label>
+                    <input type="text" class="form-control" name="jym_name" th:value="${jym.name}">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Address:
+                    </label>
+                    <input type="text" class="form-control" name="address" th:value="${jym.address}">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Contact Numbers:
+                    </label>
+                    <input type="text" class="form-control" name="contact_numbers" th:value="${jym.contact_number}">
+                </div>
+                <div class="form-group">
+                    <label>
+                        Description:
+                    </label>
+                    <textarea class="form-control" name="description" th:text="${jym.description}"></textarea>
+                </div><br>
+                <div class="form-group">
+                        <img th:src="@{'/viewtrphoto/'+ ${jym.getGymPic()}}" style="width: 50%">
+                </div><br>
+                <div class="form-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id ="customFile" name="gym_pic">
+                        <label class="custom-file-label" for="customFile">Add File</label>
+                    </div>
+                </div><br>
+                <div class="form-group">
+                    <button class="btn btn-success">EDIT GYM</button>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteGym">
+                        DELETE
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="deleteGym" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Deleting Gym</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CLOSE</button>
+                    <form th:action="@{'/deletegym'}" method="post">
+                        <input type="hidden" th:value="${jym.id}" name="id">
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+</html>

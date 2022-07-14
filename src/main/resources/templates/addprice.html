@@ -1,0 +1,77 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+    <div class="row mt-5">
+        <div class="col-6 offset-3">
+            <form th:action="@{'/addprice'}" method="post">
+                <div class="form-group">
+                    <label>
+                        GYM
+                    </label>
+                    <select class="form-control" name = "gym_id">
+                        <option th:each="jym : ${jyms}" th:text="${jym.name}"
+                                th:value="${jym.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        SUBSCRIPTION
+                    </label>
+                    <select class="form-control" name = "subscription_id">
+                        <option th:each="subscription : ${subscriptions}" th:text="${subscription.name}"
+                                th:value="${subscription.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        FREEZING
+                    </label>
+                    <select class="form-control" name = "freezing_id">
+                        <option th:each="freezing : ${freezings}" th:text="${freezing.name}"
+                                th:value="${freezing.id}"></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>
+                        PRICE
+                    </label>
+                    <input type="number" class="form-control" name="price">
+                </div>
+                <br>
+                <div class="form-group">
+                    <button class="btn btn-success">ADD PRICE</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>JYM</td>
+                        <td>SUBSCRIPTION</td>
+                        <td>PRICE</td>
+                        <td>FREEZING</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="price: ${pricesJem}">
+                        <td th:text="${price.jym.name}"></td>
+                        <td th:text="${price.subscription.name}"></td>
+                        <td th:text="${price.price}"></td>
+                        <td th:text="${price.freezing.name}"></td>
+                        <td><a th:href="@{'/pricedetails/' + ${price.id}}" class="btn btn-primary">DETAILS</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</html>

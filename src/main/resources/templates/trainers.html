@@ -1,0 +1,26 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+<!--    <div class="mt-5">-->
+        <div class="mt-5 col-10 offset-1 d-flex flex-wrap justify-content-around align-items-start">
+
+            <div class="col-4 my-2" th:each="trainer: ${trainers}">
+                <div class="card" style="width: 20rem;">
+                    <img th:src="@{'viewtrphoto/'+${trainer.trainerPic}}" class="card-img-top" alt="..." style="width: 70%">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${trainer.name}+' '+${trainer.surname}"></h5>
+                        <b><p class="card-text" th:text="${trainer.jym.name}"></p></b>
+                        <p class="card-text" th:text="${trainer.info}"></p>
+                        <a th:href="@{'/trainerdetails/' + ${trainer.id}}"class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+<!--    </div>-->
+
+</div>
+
+</html>

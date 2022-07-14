@@ -1,0 +1,34 @@
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/main.html"
+      xmlns:th = "http://www.thymeleaf.org">
+
+<div layout:fragment = "site_content">
+
+    <div class="row mt-3 d-flex justify-content-center">
+        <div class="col-6">
+            <div th:each="jymWithPrice: ${jymsWithPrice}" class="mt-2">
+                <div class="text-center"><h3 th:text="${jymWithPrice.name}"></h3></div>
+                <table class="table table-hover table-striped table-dark">
+                    <thead>
+                        <tr>
+                            <td>SUBSCRIPTION</td>
+                            <td>PRICE</td>
+                            <td>FREEZING</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="jym: ${jymWithPrice.getPrices()}">
+                            <td th:text="${jym.subscription.name}"></td>
+                            <td th:text="${jym.price}"></td>
+                            <td th:text="${jym.freezing.name}"></td>
+    <!--                        <td><a th:href="@{'/pricedetails/' + ${price.id}}" class="btn btn-primary">DETAILS</a></td>-->
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</html>
